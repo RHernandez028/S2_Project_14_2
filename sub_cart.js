@@ -22,3 +22,20 @@
 
 */
 
+window.onload = setCart;
+
+//define the event handers for the Add to Order buttons
+function setCart() {
+      var addButtons = document.getElementsByClassName("addButton");
+
+      for (var i = 0; i < addButtons.length; i++) {
+            addButtons[i].onclick = addItem;           
+      }
+}
+
+//adds item to the shopping cart
+function addItem(e) {
+      var foodItem = e.target.nextElementSibling;
+      var foodID = document.getElementById("foodItem").value;
+      
+}
