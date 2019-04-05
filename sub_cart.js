@@ -37,5 +37,15 @@ function setCart() {
 function addItem(e) {
       var foodItem = e.target.nextElementSibling;
       var foodID = document.getElementById("foodItem").value;
-      
+ 
+      var foodDescription = foodItem.cloneNode(true);
+      var cartBox = document.getElementById("cart");
+
+      var duplicateOrder = false;
+      for (var i = 0; i < cartBox.length; i++) {
+            if (cartBox.childNodes[i].id === foodID) {
+                  cartBOx.firstChild += 1;
+            }
+      }
+
 }
