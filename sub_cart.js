@@ -22,12 +22,14 @@
 
 */
 
-window.onload = setCart;
+window.addEventListener("load", setupCart);
 
 //define the event handers for the Add to Order buttons
-function setCart() {
+function setupCart() {
       var addButtons = document.getElementsByClassName("addButton");
 
+
+      // try changing to " i < addButtons.length "
       for (var i = 0; i < addButtons.length; i++) {
             addButtons[i].onclick = addItem;           
       }
@@ -36,16 +38,27 @@ function setCart() {
 //adds item to the shopping cart
 function addItem(e) {
       var foodItem = e.target.nextElementSibling;
-      var foodID = document.getElementById("foodItem").value;
+      var foodID = foodItem.getAttribute("id");
  
       var foodDescription = foodItem.cloneNode(true);
       var cartBox = document.getElementById("cart");
 
       var duplicateOrder = false;
-      for (var i = 0; i < cartBox.length; i++) {
-            if (cartBox.childNodes[i].id === foodID) {
-                  cartBOx.firstChild += 1;
+      for (var n = cartBox.firstChild; n = n.nextElementSibling; n !== null) {
+            if (n.id === foodID) {
+                  duplicateOrder = true;
+                  n.firstElementChild.textContent++;
+                  break;
             }
       }
+
+      
+      if (duplicateOrder === false) {
+            var orderCount = document.createElement("span");
+            orderCount.textContent = "1";
+            foodDescription.insertBefore(orderCount, foodDescription.firstChild);
+            cartBox.appendChild(foodDescription);        
+      }
+
 
 }
